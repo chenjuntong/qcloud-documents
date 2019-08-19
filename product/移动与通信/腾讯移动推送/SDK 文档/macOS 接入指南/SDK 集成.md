@@ -1,6 +1,6 @@
 
 ## 操作场景
-本文档提供关于  SDK 的接入以及开启推送服务的示例代码。（SDK 版本：V1.0+ 版本）
+本文档提供关于  SDK 的接入以及开启推送服务的示例代码（SDK 版本：V1.0+版本）。
 
 
 
@@ -22,7 +22,7 @@
 pod 'TPNS-macOS' 
 ```
  - **方式二：手动导入**
-进入控制台，然后单击左侧菜单栏【[SDK 下载](https://console.cloud.tencent.com/tpns/sdkdownload)】，进入下载页面，选择 macOS 平台，单击操作栏【下载】即可。
+进入控制台，单击左侧菜单栏【[SDK 下载](https://console.cloud.tencent.com/tpns/sdkdownload)】，进入下载页面，选择 macOS 平台，在其操作栏下单击【下载】，即可导入 SDK。
 6. 打开 demo 目录下的 XG-Demo-macOS 文件夹，将 XG_SDK_Cloud_macOS.framework 及 XGMTACloud_macOS.framework 添加到工程。
 7. 在 Build Phases 下添加以下 Framework：
 ```
@@ -34,13 +34,13 @@ pod 'TPNS-macOS'
 ![](https://main.qcloudimg.com/raw/481e688090a772213ce35b15be0dbd3d.png)
 9. 在工程配置和后台模式中打开推送，如下图： 
 ![](https://main.qcloudimg.com/raw/29eea75c08411c8666136ce3e1d8954a.png)
-10. 添加编译参数 ```-ObjC``` 
+10. 添加编译参数 ```-ObjC```。 
 ![](https://main.qcloudimg.com/raw/bb61982f2959bea32f43c1fd849f5e43.png)
 
 >!如 checkTargetOtherLinkFlagForObjc 报错，是因为 build setting 中，Other link flags 未添加 -ObjC。
 
-11. 调用启动腾讯移动推送的 API，并根据需要实现 ```XGPushDelegate``` 协议中的方法，开启推送服务
-   1. 启动腾讯移动推送服务，以下是在 ```AppDelegate``` 中做演示：
+11. 调用启动腾讯移动推送的 API，并根据需要实现 XGPushDelegate 协议中的方法，开启推送服务
+   1. 启动腾讯移动推送服务，以下是在 AppDelegate 中做演示：
 		 ```objective-c
 		 @interface AppDelegate () <XGPushDelegate>
 		 @end
@@ -111,5 +111,11 @@ pod 'TPNS-macOS'
 
 
 
-
+>?建议您完成 SDK 集成后，在 App 的【关于】、【意见反馈】等比较不常用的 UI 中，通过手势或者其他方式显示Token，该操作便于我们后续进行问题排查。示例代码如下：
+```objective-c
+//获取 TPNS 生成的 Token
+[[XGPushTokenManager defaultTokenManager] xgTokenString];
+//获取 APNs 生成的 DeviceToken
+[[XGPushTokenManager defaultTokenManager] deviceTokenString];
+```
 
